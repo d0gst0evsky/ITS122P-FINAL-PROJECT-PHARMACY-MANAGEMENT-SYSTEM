@@ -33,10 +33,11 @@ $current_role = $_SESSION['role'];
         <a href="inventory.php">💊 Inventory</a> &nbsp;|&nbsp;
         <a href="pos.php">🛒 POS</a> &nbsp;|&nbsp;
 
-        <!-- ipakita lang ang Staff at Reports kung admin -->
+        <!-- ipakita lang ang Staff, Reports, at Register kung admin -->
         <?php if ($current_role == 'admin'): ?>
             <a href="staff.php">👥 Staff</a> &nbsp;|&nbsp;
             <a href="reports.php">📊 Reports</a> &nbsp;|&nbsp;
+            <a href="register.php">➕ Register User</a> &nbsp;|&nbsp;
         <?php endif; ?>
 
         <a href="logout.php">🚪 Logout</a>

@@ -69,8 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="password" name="password" placeholder="ilagay ang password"><br><br>
 
         <button type="submit">Login</button>
+        <br><br>
 
     </form>
-
 </body>
 </html>
