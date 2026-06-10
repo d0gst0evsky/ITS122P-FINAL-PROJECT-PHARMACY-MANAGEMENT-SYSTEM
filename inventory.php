@@ -11,6 +11,9 @@ if (!isset($_SESSION['user_id'])) {
 
 include 'config.php';
 
+// i-check ang role ng user
+$is_admin = ($_SESSION['role'] == 'admin');
+
 // kunin lahat ng medicines galing sa database
 $med_list = mysqli_query($conn, "SELECT * FROM medicines ORDER BY name ASC");
 
@@ -32,8 +35,9 @@ $total_meds = mysqli_num_rows($med_list);
     <hr>
 
     <p>Total Medicines: <strong><?php echo $total_meds; ?></strong></p>
-    <a href="add_medicine.php">+ Add New Medicine</a>
-    <br><br>
+    <?php if ($is_admin): ?>
+        <a href="add_medicine.php">+ Add New Medicine</a>
+    <?php endif; ?>    <br><br>
 
     <!-- check kung may laman ang inventory -->
     <?php if ($total_meds == 0): ?>
@@ -69,9 +73,13 @@ $total_meds = mysqli_num_rows($med_list);
             <td><?php echo $med['unit']; ?></td>
             <td><?php echo $med['expiry_date']; ?></td>
             <td>
-                <a href="edit_medicine.php?id=<?php echo $med['medicine_id']; ?>">Edit</a> |
-                <a href="delete_medicine.php?id=<?php echo $med['medicine_id']; ?>" 
-                   onclick="return confirm('Sure ka bang i-delete ito?')">Delete</a>
+                <?php if ($is_admin): ?>
+                    <a href="edit_medicine.php?id=<?php echo $med['medicine_id']; ?>">Edit</a> |
+                    <a href="delete_medicine.php?id=<?php echo $med['medicine_id']; ?>" 
+                       onclick="return confirm('Sure ka bang i-delete ito?')">Delete</a>
+                <?php else: ?>
+                    <span style="color:gray;">View Only</span>
+                <?php endif; ?>
             </td>
         </tr>
         <?php endwhile; ?>
