@@ -1,40 +1,76 @@
 <?php
+// login.php - login page ng pharmacy system
+
 session_start();
+
 include 'config.php';
 
+// kung naka-login na, i-redirect na sa dashboard
+if (isset($_SESSION['user_id'])) {
+    header('Location: dashboard.php');
+    exit();
+}
+
+$error_msg = "";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
 
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($conn, $query);
-    $user = mysqli_fetch_assoc($result);
+    // kunin yung sinulat sa form
+    $uname = $_POST['username'];
+    $pword = $_POST['password'];
 
-    if ($user) {
-        $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
-        header('Location: dashboard.php');
+    // check kung may blanko
+    if (empty($uname) || empty($pword)) {
+        $error_msg = "Pakiusap punan ang lahat ng fields!";
     } else {
-        $error = "Invalid username or password!";
+        // hanapin sa database
+        $sql = "SELECT * FROM users WHERE username='$uname' AND password='$pword'";
+        $result = mysqli_query($conn, $sql);
+        $user_data = mysqli_fetch_assoc($result);
+
+        if ($user_data) {
+            // tama ang credentials, i-save sa session
+            $_SESSION['user_id'] = $user_data['user_id'];
+            $_SESSION['username'] = $user_data['username'];
+            $_SESSION['role'] = $user_data['role'];
+
+            // i-redirect sa dashboard
+            header('Location: dashboard.php');
+            exit();
+        } else {
+            // mali ang username o password
+            $error_msg = "Mali ang username o password. Subukan ulit!";
+        }
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Pharmacy Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Pharmacy System</title>
 </head>
 <body>
-    <h2>Login</h2>
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+
+    <h2>💊 Pharmacy Management System</h2>
+    <h3>Login</h3>
+
+    <!-- ipakita ang error kung meron -->
+    <?php if (!empty($error_msg)) echo "<p style='color:red;'>$error_msg</p>"; ?>
+
     <form method="POST">
+
         <label>Username:</label><br>
-        <input type="text" name="username"><br><br>
+        <input type="text" name="username" placeholder="ilagay ang username"><br><br>
+
         <label>Password:</label><br>
-        <input type="password" name="password"><br><br>
+        <input type="password" name="password" placeholder="ilagay ang password"><br><br>
+
         <button type="submit">Login</button>
+
     </form>
+
 </body>
 </html>
