@@ -26,7 +26,7 @@ $sales_list = mysqli_query($conn, "SELECT sales.*, users.full_name
 // i-count kung ilan lahat ng sales
 $total_sales = mysqli_num_rows($sales_list);
 
-// kalkulahin ang kabuuang kita
+// kalkulahin ang total sales
 $revenue_query = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(total_amount) AS total_revenue FROM sales"));
 $total_revenue = $revenue_query['total_revenue'] ?? 0;
 ?>
@@ -40,13 +40,13 @@ $total_revenue = $revenue_query['total_revenue'] ?? 0;
 </head>
 <body>
 
-    <h2>📊 Sales Reports</h2>
+    <h2>Sales Reports</h2>
     <a href="dashboard.php">Back to Dashboard</a>
     <hr>
 
     <!-- summary ng sales -->
     <p>Total Transactions: <strong><?php echo $total_sales; ?></strong></p>
-    <p>Kabuuang Kita: <strong>₱<?php echo number_format($total_revenue, 2); ?></strong></p>
+    <p>Total Sales: <strong>₱<?php echo number_format($total_revenue, 2); ?></strong></p>
     <hr>
 
     <!-- check kung may sales -->
@@ -59,9 +59,9 @@ $total_revenue = $revenue_query['total_revenue'] ?? 0;
             <th>Sale ID</th>
             <th>Cashier</th>
             <th>Total Amount</th>
-            <th>Bayad</th>
-            <th>Sukli</th>
-            <th>Petsa</th>
+            <th>Amount Paid</th>
+            <th>Change</th>
+            <th>Date</th>
             <th>Details</th>
         </tr>
 
@@ -73,7 +73,7 @@ $total_revenue = $revenue_query['total_revenue'] ?? 0;
             <td>₱<?php echo number_format($sale['amount_paid'], 2); ?></td>
             <td>₱<?php echo number_format($sale['change_amount'], 2); ?></td>
             <td><?php echo $sale['sale_date']; ?></td>
-            <td><a href="sale_details.php?id=<?php echo $sale['sale_id']; ?>">Tingnan</a></td>
+            <td><a href="sale_details.php?id=<?php echo $sale['sale_id']; ?>">View Details</a></td>
         </tr>
         <?php endwhile; ?>
 

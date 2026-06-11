@@ -50,22 +50,22 @@ $sold_items = mysqli_query($conn,
 </head>
 <body>
 
-    <h2>🧾 Sale Details</h2>
+    <h2>Sale Details</h2>
     <a href="reports.php">Back to Reports</a>
     <hr>
 
     <!-- basic info ng sale -->
     <p><strong>Sale ID:</strong> #<?php echo $sale_info['sale_id']; ?></p>
     <p><strong>Cashier:</strong> <?php echo $sale_info['full_name']; ?></p>
-    <p><strong>Petsa:</strong> <?php echo $sale_info['sale_date']; ?></p>
+    <p><strong>Date:</strong> <?php echo $sale_info['sale_date']; ?></p>
     <hr>
 
     <!-- listahan ng mga nabentang medicine -->
-    <h3>Mga Naibentang Gamot:</h3>
+    <h3>Sold Medicines:</h3>
     <table border="1" cellpadding="8">
         <tr>
             <th>Medicine</th>
-            <th>Dami</th>
+            <th>Quantity</th>
             <th>Unit Price</th>
             <th>Subtotal</th>
         </tr>
@@ -83,9 +83,9 @@ $sold_items = mysqli_query($conn,
     <hr>
 
     <!-- summary ng bayad -->
-    <p><strong>Kabuuang Halaga:</strong> ₱<?php echo number_format($sale_info['total_amount'], 2); ?></p>
-    <p><strong>Bayad ng Customer:</strong> ₱<?php echo number_format($sale_info['amount_paid'], 2); ?></p>
-    <p><strong>Sukli:</strong> ₱<?php echo number_format($sale_info['change_amount'], 2); ?></p>
+    <p><strong>Total Cost:</strong> ₱<?php echo number_format($sale_info['total_amount'], 2); ?></p>
+    <p><strong>Amount Paid:</strong> ₱<?php echo number_format($sale_info['amount_paid'], 2); ?></p>
+    <p><strong>Change:</strong> ₱<?php echo number_format($sale_info['change_amount'], 2); ?></p>
 
 </body>
 </html>

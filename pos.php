@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 
-    <h2>🛒 Point of Sale</h2>
+    <h2>Point of Sale</h2>
     <a href="dashboard.php">Back to Dashboard</a>
     <hr>
 
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <label>Bayad ng Customer: ₱</label>
         <input type="number" step="0.01" name="amount_paid" placeholder="0.00"><br><br>
 
-        <button type="submit">Kumpletuhin ang Benta</button>
+        <button type="submit">Complete the order</button>
         <a href="dashboard.php">Cancel</a>
 
     </form>

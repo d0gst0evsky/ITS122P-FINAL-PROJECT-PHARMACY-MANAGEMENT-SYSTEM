@@ -24,23 +24,23 @@ $current_role = $_SESSION['role'];
 <body>
 
     <!-- welcome message -->
-    <h2>Welcome, <?php echo $current_user; ?>! 👋</h2>
+    <h2>Welcome, <?php echo $current_user; ?>! </h2>
     <p>Logged in as: <strong><?php echo $current_role; ?></strong></p>
     <hr>
 
     <!-- navigation links -->
     <nav>
-        <a href="inventory.php">💊 Inventory</a> &nbsp;|&nbsp;
-        <a href="pos.php">🛒 POS</a> &nbsp;|&nbsp;
+        <a href="inventory.php">Inventory</a> &nbsp;|&nbsp;
+        <a href="pos.php">POS</a> &nbsp;|&nbsp;
 
         <!-- ipakita lang ang Staff, Reports, at Register kung admin -->
         <?php if ($current_role == 'admin'): ?>
-            <a href="staff.php">👥 Staff</a> &nbsp;|&nbsp;
-            <a href="reports.php">📊 Reports</a> &nbsp;|&nbsp;
-            <a href="register.php">➕ Register User</a> &nbsp;|&nbsp;
+            <a href="staff.php">Staff</a> &nbsp;|&nbsp;
+            <a href="reports.php">Reports</a> &nbsp;|&nbsp;
+            <a href="register.php">Register User</a> &nbsp;|&nbsp;
         <?php endif; ?>
 
-        <a href="logout.php">🚪 Logout</a>
+        <a href="logout.php">Logout</a>
     </nav>
 
 </body>

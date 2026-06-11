@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // check kung may blanko
     if (empty($uname) || empty($pword)) {
-        $error_msg = "Pakiusap punan ang lahat ng fields!";
+        $error_msg = "Please fill in all fields.";
     } else {
         // hanapin sa database
         $sql = "SELECT * FROM users WHERE username='$uname' AND password='$pword'";
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         } else {
             // mali ang username o password
-            $error_msg = "Mali ang username o password. Subukan ulit!";
+            $error_msg = "Incorrect username or password. Please try again!";
         }
     }
 }
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 
-    <h2>💊 Pharmacy Management System</h2>
+    <h2>Pharmacy Management System</h2>
     <h3>Login</h3>
 
     <!-- ipakita ang error kung meron -->
@@ -63,10 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form method="POST">
 
         <label>Username:</label><br>
-        <input type="text" name="username" placeholder="ilagay ang username"><br><br>
+        <input type="text" name="username" placeholder="enter your username"><br><br>
 
         <label>Password:</label><br>
-        <input type="password" name="password" placeholder="ilagay ang password"><br><br>
+        <input type="password" name="password" placeholder="enter your password"><br><br>
 
         <button type="submit">Login</button>
         <br><br>

@@ -30,27 +30,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // check kung may blanko
     if (empty($uname) || empty($pword) || empty($fname) || empty($umail)) {
-        $error_msg = "Pakiusap punan ang lahat ng fields!";
+        $error_msg = "All fields are required!";
 
     // check kung tugma ang password
     } elseif ($pword != $pword2) {
-        $error_msg = "Hindi tugma ang password. Subukan ulit!";
+        $error_msg = "Passwords do not match. Please try again!";
 
     // check kung may existing na username
     } else {
         $check = mysqli_query($conn, "SELECT * FROM users WHERE username='$uname'");
         
         if (mysqli_num_rows($check) > 0) {
-            $error_msg = "May existing na account sa username na yan!";
+            $error_msg = "This username is already in use. Please choose another one.";
         } else {
             // i-save sa database bilang regular user
             $sql = "INSERT INTO users (username, password, full_name, role, email) 
                     VALUES ('$uname', '$pword', '$fname', 'cashier', '$umail')";
 
             if (mysqli_query($conn, $sql)) {
-                $success_msg = "Matagumpay na naka-register! Pwede ka nang mag-login.";
+                $success_msg = "Successfully registered! You can now log in.";
             } else {
-                $error_msg = "May error sa pag-register: " . mysqli_error($conn);
+                $error_msg = "There was an error during registration: " . mysqli_error($conn);
             }
         }
     }
@@ -88,11 +88,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="password" name="password" placeholder="minimum 6 characters"><br><br>
 
         <label>Confirm Password:</label><br>
-        <input type="password" name="confirm_password" placeholder="ulitin ang password"><br><br>
+        <input type="password" name="confirm_password" placeholder="repeat the password"><br><br>
 
-        <button type="submit">Mag-Register</button>
+        <button type="submit">Register</button>
         <br><br>
-        <a href="login.php">May account na? Mag-login dito</a>
 
     </form>
 

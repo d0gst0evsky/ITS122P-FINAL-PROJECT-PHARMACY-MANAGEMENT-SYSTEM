@@ -79,7 +79,7 @@ $total_staff = mysqli_num_rows($staff_list);
                     <a href="delete_staff.php?id=<?php echo $staff['user_id']; ?>"
                        onclick="return confirm('Sure ka bang i-delete si <?php echo $staff['full_name']; ?>?')">Delete</a>
                 <?php else: ?>
-                    <span style="color:gray;">Ikaw ito</span>
+                    <span style="color:gray;">This is you.</span>
                 <?php endif; ?>
             </td>
         </tr>

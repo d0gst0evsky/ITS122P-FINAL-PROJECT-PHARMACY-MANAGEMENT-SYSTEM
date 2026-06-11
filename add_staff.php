@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // check kung may blanko
     if (empty($uname) || empty($pword) || empty($fname) || empty($umail)) {
-        $error_msg = "Lahat ng fields ay kailangan punan!";
+        $error_msg = "All fields are required!";
     } else {
         // i-save sa database
         $sql = "INSERT INTO users (username, password, full_name, role, email) 
