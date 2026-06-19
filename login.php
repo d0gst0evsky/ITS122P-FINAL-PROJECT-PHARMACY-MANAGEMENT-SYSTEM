@@ -50,27 +50,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login_css.css">
     <title>Login - Pharmacy System</title>
 </head>
 <body>
 
     <h2>Pharmacy Management System</h2>
-    <h3>Login</h3>
 
     <!-- ipakita ang error kung meron -->
     <?php if (!empty($error_msg)) echo "<p style='color:red;'>$error_msg</p>"; ?>
 
-    <form method="POST">
+    <div class="page">
+        <form method="POST" class="login-form">
 
-        <label>Username:</label><br>
-        <input type="text" name="username" placeholder="enter your username"><br><br>
+            <h3>Login</h3>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" placeholder="enter your password"><br><br>
+            <label>Username:</label><br>
+            <input type="text" name="username" placeholder="enter your username"><br><br>
 
-        <button type="submit">Login</button>
-        <br><br>
+            <label>Password:</label><br>
+            <input type="password" name="password" placeholder="enter your password"><br><br>
 
-    </form>
+            <button type="submit">Login</button>
+            <br><br>
+
+        </form>
+    </div>
+
 </body>
 </html>
